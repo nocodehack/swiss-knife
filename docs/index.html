@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Swiss Knife: the 3 most annoying things about Claude Code, fixed</title>
+<meta name="description" content="A free mod for Claude Code. One-line install. No coding.">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#1C1B19">
+<meta property="og:title" content="Swiss Knife for Claude Code">
+<meta property="og:description" content="The 3 most annoying things about Claude Code, fixed. A free mod. One-line install. No coding.">
+<link rel="icon" href="assets/idle.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Figtree:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('sk-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+
+<header class="top wrap">
+  <a class="brand" href="#top" aria-label="Swiss Knife, back to top">
+    <span class="brand-mascot"><img src="assets/idle.svg" alt="" width="56" height="51"></span>
+    <span>Swiss Knife</span>
+  </a>
+  <nav class="top-links">
+    <button class="theme" type="button" aria-label="Switch theme">Light</button>
+    <a href="https://github.com/nocodehack/swiss-knife">GitHub</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- 1 · Hero -->
+  <section class="hero wrap">
+    <div class="hero-text">
+      <h1>The 3 most annoying things about Claude Code, fixed.</h1>
+      <p class="sub">A free mod. One-line install. No coding.</p>
+      <div class="install">
+        <code class="cmd">/plugin install swiss-knife --marketplace nocodehack/swiss-knife</code>
+        <button class="copy" type="button" data-copy="/plugin install swiss-knife --marketplace nocodehack/swiss-knife">Copy</button>
+      </div>
+      <p class="meta">Needs Claude Code 2.1.287+ · Works in the desktop app and the terminal · MIT, free forever</p>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <img class="hero-mascot" src="assets/writing.svg" alt="" width="240" height="220">
+      <div class="strip live" data-state="work">
+        <span class="strip-mascot"><img src="assets/writing.svg" alt="" width="72" height="66"></span>
+        <span class="strip-body">
+          <span class="strip-l1"><b class="strip-lead">● Working</b> <span class="dim strip-time">· 0:42</span></span>
+          <span class="strip-l2">Writing the About us page.</span>
+        </span>
+        <span class="strip-btn">Panel</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · The 3 fixes -->
+  <section class="fixes wrap" aria-labelledby="fixes-h">
+    <h2 class="visually-hidden" id="fixes-h">The 3 fixes</h2>
+
+    <article class="fix">
+      <div class="fix-text">
+        <p class="step-dots" aria-label="Fix 1 of 3"><i class="on"></i><i></i><i></i><span>Fix 1 of 3</span></p>
+        <h3>“Claude waited 40 minutes for me to click Allow.”</h3>
+        <p>A chime, a desktop notification and a red strip the moment Claude needs you, plus a second ping after 5 minutes.</p>
+      </div>
+      <div class="fix-visual" aria-hidden="true">
+        <div class="toast">
+          <span class="toast-app">Claude Code · now</span>
+          <b>Claude needs you</b>
+          <span>It wants your OK to go on.</span>
+        </div>
+        <div class="strip" data-state="need">
+          <span class="strip-mascot"><img src="assets/waiting-for-you.svg" alt="" width="72" height="66"></span>
+          <span class="strip-body">
+            <span class="strip-l1"><b class="strip-lead">● Claude needs you</b> <span class="dim">· waiting 0:10</span></span>
+            <span class="strip-l2">It wants your OK to go on. Answer in the chat.</span>
+          </span>
+          <span class="strip-btn">Panel</span>
+        </div>
+        <ol class="timeline">
+          <li><span class="dim">0:00</span>Chime, notification, red strip</li>
+          <li><span class="dim">5:00</span>Still waiting? A second ping</li>
+        </ol>
+      </div>
+    </article>
+
+    <article class="fix">
+      <div class="fix-text">
+        <p class="step-dots" aria-label="Fix 2 of 3"><i class="on"></i><i class="on"></i><i></i><span>Fix 2 of 3</span></p>
+        <h3>“I hit my limit out of nowhere.”</h3>
+        <p>5-hour and weekly gauges with a forecast: “At this pace your 5-hour limit runs out around 15:10.”</p>
+      </div>
+      <div class="fix-visual" aria-hidden="true">
+        <div class="card gauges">
+          <b>Plan limits</b>
+          <div class="row"><span>5-hour limit</span><span>74% used</span></div>
+          <div class="bar"><i style="--v:74%"></i></div>
+          <p class="forecast">At this pace your 5-hour limit runs out around 15:10.</p>
+          <p class="dim">Resets 16:00.</p>
+          <div class="row"><span>Weekly limit</span><span>21% used</span></div>
+          <div class="bar"><i style="--v:21%"></i></div>
+        </div>
+      </div>
+    </article>
+
+    <article class="fix">
+      <div class="fix-text">
+        <p class="step-dots" aria-label="Fix 3 of 3"><i class="on"></i><i class="on"></i><i class="on"></i><span>Fix 3 of 3</span></p>
+        <h3>“Long chats get slow and forgetful.”</h3>
+        <p>At ~70% full, one click writes a handoff note. Open a new chat and Claude picks up exactly where you left off. No /clear.</p>
+      </div>
+      <div class="fix-visual" aria-hidden="true">
+        <div class="card handoff">
+          <div class="row"><b>This chat is 70% full</b><img class="mini" src="assets/context-nearly-full.svg" alt="" width="72" height="66"></div>
+          <div class="segs" style="--n:14"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <span class="fake-btn">Continue in a new chat</span>
+          <div class="handoff-done">
+            <p><b class="green">✓ Ready for a new chat</b></p>
+            <p class="dim">Open a new chat in this project. Claude reads the note with your first message.</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- 3 · Everything else -->
+  <section class="box wrap" aria-labelledby="box-h">
+    <h2 id="box-h">Everything else in the box</h2>
+    <p class="lead">Each one can be turned on or off in Settings.</p>
+    <ul class="grid">
+      <li><b>Time &amp; cost per project</b><span>How long you worked and what it’s worth. Breaks don’t count.</span></li>
+      <li><b>Daily budget</b><span>Set a daily amount per project. A heads-up at 80% and 100%.</span></li>
+      <li><b>Guard</b><span>Asks you first before a command that could delete your work.</span></li>
+      <li><b>Last-task recap</b><span>What got done, what’s still needed, and which files changed.</span></li>
+      <li><b>Model tips</b><span>Says when a cheaper or stronger model fits the job better.</span></li>
+      <li><b>Quick-memory timer</b><span>Warns before a long chat’s quick memory runs out and the next message costs more.</span></li>
+      <li><b>Pins</b><span>Pin any reply. Plans you approve are pinned for you.</span></li>
+      <li><b>Hide secrets on screen</b><span>Passwords, keys and emails show as a grey bar when you record or share your screen.</span></li>
+      <li><b>/report for clients</b><span>1–3 plain lines on what you did today or this week, with time and cost.</span></li>
+      <li class="has-mascot"><b>Pixel mascot</b><span>Shows what Claude is doing, and naps on your break.</span><img src="assets/asleep-nightcap.svg" alt="" width="72" height="66"></li>
+    </ul>
+  </section>
+
+  <!-- 4 · Install -->
+  <section class="install-sec wrap" id="install" aria-labelledby="install-h">
+    <h2 id="install-h">How to install, in 3 steps</h2>
+    <ol class="steps">
+      <li>
+        <span class="num" aria-hidden="true">1</span>
+        <div><b>Update Claude Code.</b><p class="dim">In a terminal: <code>claude update</code></p></div>
+      </li>
+      <li>
+        <span class="num" aria-hidden="true">2</span>
+        <div><b>Paste the line.</b>
+          <div class="install">
+            <code class="cmd">/plugin install swiss-knife --marketplace nocodehack/swiss-knife</code>
+            <button class="copy" type="button" data-copy="/plugin install swiss-knife --marketplace nocodehack/swiss-knife">Copy</button>
+          </div>
+        </div>
+      </li>
+      <li>
+        <span class="num" aria-hidden="true">3</span>
+        <div><b>Press <kbd>y</kbd>, then <kbd>Enter</kbd>.</b></div>
+      </li>
+    </ol>
+    <p class="note">Mods install through Claude Code’s plugin system, so the command says plugin.</p>
+    <p class="note"><b>In the desktop app:</b> + → Plugins → Add marketplace → <code>nocodehack/swiss-knife</code></p>
+  </section>
+
+  <!-- 5 · Safe and private -->
+  <section class="safe wrap" aria-labelledby="safe-h">
+    <h2 id="safe-h">Safe and private</h2>
+    <ul class="safe-list">
+      <li>Guard is a seatbelt, not a vault: it asks first and never approves anything by itself.</li>
+      <li>Your numbers stay on your computer.</li>
+      <li>The handoff, recap, /report and model tips send text to Claude with your own login. No API key.</li>
+    </ul>
+  </section>
+
+  <!-- 6 · Video. Put the YouTube video ID in data-video-id, e.g. data-video-id="dQw4w9WgXcQ" -->
+  <section class="video wrap" aria-labelledby="video-h">
+    <h2 id="video-h">Watch the 10-minute walkthrough</h2>
+    <div class="player" data-video-id="">
+      <button class="play" type="button" aria-label="Play the walkthrough video">
+        <img src="assets/greeting.svg" alt="" width="240" height="220">
+        <span class="play-label"><span class="play-icon" aria-hidden="true"></span><span class="play-text">Video coming soon</span></span>
+      </button>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot wrap">
+  <nav>
+    <a href="https://github.com/nocodehack/swiss-knife">GitHub</a>
+    <a href="https://www.youtube.com/@nocodehack">YouTube @nocodehack</a>
+    <a href="https://github.com/nocodehack/swiss-knife/blob/main/LICENSE">MIT License</a>
+  </nav>
+  <p class="dim">Unofficial. Not affiliated with Anthropic.</p>
+</footer>
+
+<div class="toast-copied" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body>
+</html>
