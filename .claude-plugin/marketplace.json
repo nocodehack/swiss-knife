@@ -1,0 +1,6 @@
+{
+  "name": "nocodehack",
+  "owner": { "name": "nocodehack" },
+  "description": "Claude Code mods by nocodehack, for people who build with Claude without being developers.",
+  "plugins": [{ "name": "swiss-knife", "source": "./" }]
+}
