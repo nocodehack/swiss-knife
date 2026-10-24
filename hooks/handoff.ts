@@ -43,6 +43,7 @@ export const handoffSystem = (level: HandoffLevel) =>
   'Be specific: real names, values and file names inside the project. Leave out shell commands such as rm -rf unless the next chat needs them. ' +
   'Keep every line under 120 characters. Write "None." under a section with nothing in it. ' +
   'No title, no preamble, no closing remarks. ' +
+  'Write the content in the language the person writes in, but keep the section headings and the [open]/[done] marks exactly as given, in English. ' +
   (level === 'full' ? 'Be thorough: this document replaces the whole conversation; Where it stands may have more than 4 bullets.' : 'Keep it tight: about 250 words.')
 
 // What the writer reads: the project, the files the mod saw change, and the conversation.

@@ -120,7 +120,8 @@ export const REPORT_SYSTEM =
   'You write short work updates for a non-technical reader (a client or a manager). ' +
   'Write 1 to 3 bullet lines starting with "• ", each under 15 words, saying what was achieved, in plain English. ' +
   'Only claim what Claude\'s replies confirm. If a reply says nothing needed changing, say it was checked. ' +
-  'Write fewer lines when there was less work. Never pad. No code, no file names, no jargon, no mention of AI or prompts.'
+  'Write fewer lines when there was less work. Never pad. No code, no file names, no jargon, no mention of AI or prompts. ' +
+  'Write in the language the person wrote their requests in.'
 
 // How long a task took: "45s", "2m 14s", "1h 05m".
 export function fmtDuration(ms: number): string {

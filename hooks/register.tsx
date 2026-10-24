@@ -38,7 +38,8 @@ const RECAP_SYSTEM =
   'only claim what the reply confirms. Line 2 starts with "NEXT:" and gives the most useful next request the person ' +
   'could type, under 12 words, in their voice (like "make the form send emails"), or "none". ' +
   'Then a line "REPORT:" followed by 2 to 5 lines starting with "- ": what was done or found, step by step, ' +
-  'and anything left to check, in the same plain English, only what the reply confirms.'
+  'and anything left to check, in the same plain words, only what the reply confirms. ' +
+  'Write the text in the language the person asked in; keep the labels RECAP:, NEXT:, REPORT: and "Left to check:" in English.'
 
 // What one answer used: dollars (what it would cost on the API) and points of the plan's limits.
 type ReplyUsage = { usd?: number; five?: number; week?: number }
