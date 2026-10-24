@@ -12,6 +12,7 @@ const SECRETS: RegExp[] = [
   /\b(?:sk|rk|pk)_(?:live|test)_[A-Za-z0-9]{16,}/g, // Stripe
   /\bwhsec_[A-Za-z0-9]{20,}/g, // Stripe webhook secret
   /\b(?:hf_[A-Za-z0-9]{30,}|npm_[A-Za-z0-9]{30,}|glpat-[A-Za-z0-9_-]{20,}|sbp_[a-f0-9]{30,}|xai-[A-Za-z0-9]{30,})/g, // Hugging Face, npm, GitLab, Supabase, xAI
+  /\b(?:sk|key|api)_[A-Za-z0-9]{32,}/g, // ElevenLabs (sk_ + 48 hex) and other prefixed keys, even lower case only
   /[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}/g, // email addresses
   // Any other long random token: 32+ characters mixing lower case, upper case and digits
   // (git hashes and ids are lower case only, so they stay visible).
