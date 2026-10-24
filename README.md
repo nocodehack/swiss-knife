@@ -1,6 +1,6 @@
 # 🔪 Swiss Knife for Claude Code
 
-**The 3 most annoying things about Claude Code, fixed. Free, one-line install, no coding.**
+**A free Claude Code mod that fixes the 3 most annoying things about Claude Code. One-line install, no coding.**
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-DD775B.svg)](LICENSE)
 ![Claude Code 2.1.287+](https://img.shields.io/badge/Claude%20Code-2.1.287%2B-DD775B.svg)
@@ -30,6 +30,8 @@ When the chat is about 70% full, Swiss Knife suggests a fresh start. Click **Con
 ## Install (1 minute)
 
 You need [Claude Code](https://docs.claude.com/en/docs/claude-code) **2.1.287 or newer** (run `claude update`).
+
+> Mods install through Claude Code's plugin system, so the command says `plugin`. A mod is a plugin that changes Claude Code itself: its screen, sounds and prompts.
 
 **In a terminal Claude Code session**, paste:
 
