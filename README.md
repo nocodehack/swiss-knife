@@ -11,6 +11,8 @@
   <img src="docs/panel.png" alt="The Swiss Knife panel: Claude needs you, last task, today's time and cost, plan limits" width="360">
 </p>
 
+<p align="center"><a href="https://youtu.be/jJpqcB9MsK8">▶ Watch the 8-minute walkthrough on YouTube</a></p>
+
 ---
 
 ## The 3 fixes
