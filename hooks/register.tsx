@@ -3,7 +3,7 @@
 // The rules live in the other files in this folder; this file wires them to Claude Code.
 import type { Register } from 'claude-code'
 import {
-  type Day, type Project, dayKey, emptyDay, projectName, workedMs, statusText, sumDays, fmtTime, fmtSpend,
+  type Day, type Project, dayKey, emptyDay, projectName, projectRoot, costDelta, isNearFolder, workedMs, statusText, sumDays, fmtTime, fmtSpend,
   budgetWarning, budgetLevel, parseBudget, money, usageDelta, fmtPct, pctWarning, reportPrompt, REPORT_SYSTEM, oneLine, ago, fmtDuration, firstSentence, IDLE_MS,
 } from './meter'
 import { sizeOf, DIRECTION_SYSTEM, coachLine, label } from './coach'
@@ -98,6 +98,7 @@ const k = {
   isHandedOff: false, // a handoff was just written: the strip says so until the next prompt
   noteSent: null as Note | null, // the handoff a new chat just picked up, shown until the first reply
   note: null as Note | null, // a handoff note waiting for the first prompt
+  noteAt: '', // the store key it waits under: this folder's, or a folder inside or around it
   isNoteStale: false, // that note is old: it waits for "Continue it" instead of going along by itself
   // The Handoff tab: writing (the mascot writes), ready (the document), failed, or idle.
   handoff: { status: 'idle', level: 'standard', startedAt: 0, note: null, file: '' } as {
@@ -146,8 +147,9 @@ async function load($: any): Promise<Project> {
 async function track($: any, change: (d: Day, p: Project) => void = () => {}) {
   if (!k.blades.all) return
   const cwd = (await $.session.cwd()) || k.cwd // the desktop app starts in your home folder, then moves to the project
-  if (cwd !== k.cwd) k.pins = null // another project: its own pins
-  k.cwd = cwd
+  const root = projectRoot(k.cwd, cwd)
+  if (root !== k.cwd) k.pins = null // another project: its own pins
+  k.cwd = root
   if (!k.cwd) return
   const now = await $.clock.now()
   const p = await load($)
@@ -598,9 +600,18 @@ async function discardHandoff($: any) {
 // A waiting note, at a session's start: a recent one goes along with the first message by itself,
 // with its next step ready in the prompt box; an old one waits for "Continue it".
 async function takeNote($: any, now: number): Promise<boolean> {
-  const note = (await $.store.get(noteKey())) as Note | undefined
+  // This folder's note first; else the newest one written in a folder inside or around this one
+  // (a chat opened one level up from where the last one worked still finds it).
+  let key = noteKey(), note = (await $.store.get(key)) as Note | undefined
+  if (!note) {
+    for (const other of ((await $.store.keys().catch(() => [])) as string[]).filter(x => x.startsWith('handoff:') && x !== key)) {
+      const n = (await $.store.get(other)) as Note | undefined
+      if (n && isNearFolder(other.slice('handoff:'.length), k.cwd) && (!note || n.at > note.at)) { note = n; key = other }
+    }
+  }
   if (!note) return false
   k.note = note
+  k.noteAt = key
   k.isNoteStale = now - note.at > STALE_MS
   if (!k.isNoteStale && note.next) void $.prompt.suggest({ text: oneLine(note.next, 120) }).catch(() => undefined)
   $.ui.invalidate('ui.render') // the strip says "Continuing", or asks about an old one
@@ -1316,7 +1327,7 @@ export const register: Register = on => {
       if (k.note) { // a new session after a handoff: Claude reads the document with this first message
         const note = k.note, isStale = k.isNoteStale
         k.note = null
-        await $.store.delete(noteKey())
+        await $.store.delete(k.noteAt || noteKey())
         if (!isStale) { // an old one not taken up is dropped
           // The desktop app starts the session with the first message, so this is the first moment to say so.
           k.noteSent = note
@@ -1381,10 +1392,10 @@ export const register: Register = on => {
     const did = reply ? oneLine(reply.text, 200) : ''
     const now = await $.clock.now()
     let asked = ''
-    const turnUsd = typeof usd === 'number' ? Math.max(0, usd - (k.lastUsd ?? usd)) : undefined
+    const turnUsd = typeof usd === 'number' ? costDelta(usd, k.lastUsd ?? usd) : undefined
     await track($, (d, p) => {
       asked = d.prompts.at(-1) ?? ''
-      if (typeof usd === 'number') d.usd += Math.max(0, usd - (k.lastUsd ?? usd))
+      if (turnUsd !== undefined) d.usd += turnUsd
       if (u) d.tokens += u.input_tokens + u.output_tokens + u.cache_creation_input_tokens
       if (did) d.done.push(did)
       p.last = { at: now, asked: d.prompts.at(-1) ?? '', did }

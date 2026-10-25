@@ -7,8 +7,8 @@
 ![Works in the desktop app and the terminal](https://img.shields.io/badge/desktop%20%2B%20terminal-yes-DD775B.svg)
 
 <p align="center">
-  <img src="docs/needs-you.png" alt="The strip above the prompt: Claude needs you, waiting 0:10" width="640"><br>
-  <img src="docs/panel.png" alt="The Swiss Knife panel: last task, today's time and cost, plan limits" width="360">
+  <img src="docs/needs-you.png" alt="The strip above the prompt: Claude needs you, waiting 0:32" width="640"><br>
+  <img src="docs/panel.png" alt="The Swiss Knife panel: Claude needs you, last task, today's time and cost, plan limits" width="360">
 </p>
 
 ---
@@ -22,8 +22,8 @@ Swiss Knife plays a **chime**, sends a **desktop notification** and turns the st
 ### 2. You hit your plan limit by surprise
 Your 5-hour and weekly limits appear as gauges with reset times and a **forecast**: *"At this pace your 5-hour limit runs out around 15:10."* You get a heads-up at 80% and again at 95%.
 
-### 3. The chat gets long, slow and forgetful
-When the chat is about 70% full, Swiss Knife suggests a fresh start. Click **Continue in a new chat**: it writes a short handoff note (the goal, where things stand, files, decisions, the next step). Open a new chat in the same project and Claude reads it with your first message. Nothing is lost, and you never have to type `/clear`.
+### 3. Long chats eat your tokens
+With every message, Claude reads the whole chat again from the start, so a long chat costs more with every reply. When the chat is about 70% full, Swiss Knife suggests a fresh start. Click **Continue in a new chat**: it writes a short handoff note (the goal, where things stand, files, decisions, the next step). Open a new chat in the same project and Claude reads it with your first message. Nothing is lost, and you never have to type `/clear`.
 
 ---
 
@@ -73,7 +73,7 @@ Each feature can be turned on or off in the **Settings** tab.
 | 🧭 **Model tips** | Says when a cheaper or stronger model fits the work better. You switch in the model menu. |
 | ⏳ **Quick memory timer** | Warns before Claude's cache of a big chat (50k+ tokens) runs out, using your `promptCacheTtl` setting. |
 | 📌 **Pins** | Pin any reply. Plans you approve are pinned for you. |
-| 🙈 **Hide secrets** | Keys, passwords and emails show as a grey bar on screen, handy when you record or share your screen. Claude still gets the real text. |
+| 🙈 **Hide secrets** | Keys, passwords and emails show as a grey bar on screen, handy when you record or share your screen. Claude still gets the real text. Covers the prompt box and the chat, not the app's own permission dialogs: switch to Accept edits while you record. |
 | 🦀 **Mascot** | A pixel buddy that shows what Claude is doing: thinking, writing, testing, done, or asleep on your break. |
 | 📝 **/report** | 1–3 plain-English lines of what you did today or this week, with time and cost. Ready to send to a client. |
 

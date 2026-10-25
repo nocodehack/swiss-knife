@@ -22,6 +22,27 @@ export const money = (n: number) => (Number.isInteger(n) ? `$${n}` : `$${n.toFix
 export const dayKey = (t: number) => new Date(t).toISOString().slice(0, 10)
 export const emptyDay = (): Day => ({ ms: 0, usd: 0, tokens: 0, prompts: [], done: [] })
 export const projectName = (cwd: string) => cwd.replace(/[\\/]+$/, '').split(/[\\/]/).pop() || cwd
+
+// The project stays the folder the chat works in: Claude's shell stepping into a subfolder (cd tools) doesn't make
+// a new project, or the day's time and cost get split across folders. The home folder the desktop app starts in
+// is never kept: the chat moves on to the real project from there.
+const normPath = (p: string) => p.replace(/[\\/]+$/, '').replace(/\\/g, '/').toLowerCase()
+const isHome = (p: string) => /^([a-z]:)?\/(users|home)\/[^/]+$/.test(normPath(p))
+export function projectRoot(current: string, next: string): string {
+  if (!current || !next || isHome(current)) return next || current
+  const c = normPath(current), n = normPath(next)
+  return n === c || n.startsWith(c + '/') ? current : next
+}
+
+// A folder inside the other, or the other inside it: a handoff written there still belongs to this chat.
+export function isNearFolder(a: string, b: string): boolean {
+  const x = normPath(a), y = normPath(b)
+  return !!x && !!y && (x === y || x.startsWith(y + '/') || y.startsWith(x + '/'))
+}
+
+// What the session's running cost added since the last reading. A counter that went down was reset
+// (a new chat in the same window), so all of it is new.
+export const costDelta = (usd: number, last: number | undefined) => (last === undefined ? 0 : usd >= last ? usd - last : usd)
 export const oneLine = (text: string, max: number) => {
   const t = text.replace(/\s+/g, ' ').trim()
   return t.length > max ? `${t.slice(0, max - 1)}…` : t

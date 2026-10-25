@@ -1,6 +1,6 @@
 import { test, expect } from 'claude-code/testing'
 import {
-  workedMs, fmtTime, fmtSpend, statusText, projectName, sumDays, reportPrompt, budgetWarning, parseBudget, isWork, ago, IDLE_MS,
+  workedMs, fmtTime, projectRoot, costDelta, isNearFolder, fmtSpend, statusText, projectName, sumDays, reportPrompt, budgetWarning, parseBudget, isWork, ago, IDLE_MS,
   type Project,
 } from './meter'
 import { sizeByRules, sizeOf, advise, sameVersion, isCoachable, label, coachLine } from './coach'
@@ -408,4 +408,25 @@ test('the volume bars fill from the bottom in Claude orange, and none when muted
   expect(reportLine('Added a form.').isTodo).toBe(false)
   expect(lit(volumeBarsSvg(1, true))).toBe(10)
   expect(lit(volumeBarsSvg(1, false))).toBe(0)
+})
+
+test('the project stays put when the shell steps into a subfolder', () => {
+  expect(projectRoot('D:/work/site', 'D:/work/site/tools')).toBe('D:/work/site')
+  expect(projectRoot('D:/work/site', 'd:/work/site/final')).toBe('D:/work/site')
+  expect(projectRoot('D:/work/site', 'D:/work/other')).toBe('D:/work/other')
+  expect(projectRoot('C:/Users/saif', 'C:/Users/saif/proj')).toBe('C:/Users/saif/proj')
+  expect(projectRoot('', '/home/a/proj')).toBe('/home/a/proj')
+})
+
+test("counts each reply's cost once, also after the counter resets", () => {
+  expect(Math.round(costDelta(1.5, 1.2) * 100)).toBe(30)
+  expect(Math.round(costDelta(0.2, 3.0) * 100)).toBe(20)
+  expect(costDelta(1, undefined)).toBe(0)
+})
+
+test("a handoff one folder up or down still counts as this chat's", () => {
+  expect(isNearFolder('D:/v/edit', 'D:/v')).toBe(true)
+  expect(isNearFolder('D:/v', 'D:/v/edit')).toBe(true)
+  expect(isNearFolder('D:/v/edit', 'D:/w')).toBe(false)
+  expect(isNearFolder('D:/v/editor', 'D:/v/edit')).toBe(false)
 })

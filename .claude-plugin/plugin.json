@@ -1,6 +1,6 @@
 {
   "name": "swiss-knife",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "The 3 most annoying things about Claude Code, fixed: a ping when Claude needs you, plan-limit gauges with a forecast, and handoff to a fresh chat. Plus time and cost, a guard, pins and a pixel mascot.",
   "author": { "name": "nocodehack", "url": "https://github.com/nocodehack" },
   "homepage": "https://github.com/nocodehack/swiss-knife",
